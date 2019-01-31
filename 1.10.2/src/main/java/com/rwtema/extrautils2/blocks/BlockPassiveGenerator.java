@@ -14,6 +14,7 @@ import com.rwtema.extrautils2.backend.model.BoxModel;
 import com.rwtema.extrautils2.crafting.CraftingHelper;
 import com.rwtema.extrautils2.items.ItemIngredients;
 import com.rwtema.extrautils2.power.IWorldPowerMultiplier;
+import com.rwtema.extrautils2.power.PowerManager;
 import com.rwtema.extrautils2.power.PowerMultipliers;
 import com.rwtema.extrautils2.structure.PatternRecipe;
 import com.rwtema.extrautils2.tile.TilePassiveGenerator;
@@ -551,7 +552,7 @@ public class BlockPassiveGenerator extends XUBlockStatic {
 
 		@SideOnly(Side.CLIENT)
 		public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-			if (powerMultiplier != IWorldPowerMultiplier.CONSTANT) {
+			if (powerMultiplier != IWorldPowerMultiplier.CONSTANT && PowerManager.ENABLE_EFFICIENCY_LOSS) {
 				tooltip.add(Lang.translateArgs("Base Power Given: %s GP", basePowerGen()));
 				WorldClient theWorld = Minecraft.getMinecraft().world;
 				if (theWorld != null)
@@ -559,7 +560,7 @@ public class BlockPassiveGenerator extends XUBlockStatic {
 			} else {
 				tooltip.add(Lang.translateArgs("Power Given: %s GP", basePowerGen()));
 			}
-			if (caps != null) {
+			if (caps != null && PowerManager.ENABLE_EFFICIENCY_LOSS) {
 				String reset = ChatFormatting.RESET.toString() + ChatFormatting.GRAY.toString();
 				String tab = "   ";
 				if (!(Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54))) {

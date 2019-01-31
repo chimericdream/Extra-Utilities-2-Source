@@ -28,6 +28,7 @@ import com.rwtema.extrautils2.eventhandlers.SquidSpawnRestrictions;
 import com.rwtema.extrautils2.items.*;
 import com.rwtema.extrautils2.machine.*;
 import com.rwtema.extrautils2.potion.*;
+import com.rwtema.extrautils2.power.PowerManager;
 import com.rwtema.extrautils2.power.energy.BlockPowerBattery;
 import com.rwtema.extrautils2.power.energy.BlockPowerTransmitter;
 import com.rwtema.extrautils2.power.energy.TilePowerBattery;
@@ -1346,6 +1347,7 @@ public class XU2Entries {
 		public void loadAdditionalConfig(Configuration config) {
 			WorldProviderSpecialDim.ALLOW_SPECIAL_DIMS = config.get(ConfigHelper.GAMEPLAY_CATEGORY, "Quantum Quarry: Enable Nether/End biome generation (has been buggy)", false).getBoolean();
 			TileQuarry.ENERGY_PER_OPERATION = config.get(ConfigHelper.ENERGY_CATEGORY, "Quantum Quarry: Base Energy Per Operation", 20000).getInt();
+			PowerManager.ENABLE_EFFICIENCY_LOSS = config.get(ConfigHelper.ENERGY_CATEGORY, "Passive GP Generation: Enable Efficiency Loss", true).getBoolean();
 		}
 	};
 	public static DimensionEntry specialdim = new DimensionEntry("ExtraUtils2_Quarry_Dim", -9999, WorldProviderSpecialDim.class, true) {

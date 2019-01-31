@@ -41,6 +41,7 @@ import static com.rwtema.extrautils2.utils.helpers.DescribeHelper.addDescription
 
 
 public class PowerManager {
+	public static boolean ENABLE_EFFICIENCY_LOSS = true;
 	public final static PowerManager instance = new PowerManager();
 	public static final Object MUTEX = new Object();
 	private static final int REFRESH_TIME = 20 * 30;
@@ -67,7 +68,7 @@ public class PowerManager {
 
 	public static float getEfficiency(IPower power) {
 		IWorldPowerMultiplier multiplier = power.getMultiplier();
-		if (!multiplier.hasInefficiencies()) return 1;
+		if (!multiplier.hasInefficiencies() || !ENABLE_EFFICIENCY_LOSS) return 1;
 
 		PowerFreq freq = PowerManager.instance.getPowerFreq(power.frequency());
 		float v = power.getPower();
